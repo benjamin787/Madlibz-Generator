@@ -1,4 +1,5 @@
 #answer-list {
+    display: flex;
     list-style-type: none;
     float: right;
     margin: 10rem;  
@@ -8,4 +9,10 @@
 .lists {
     /* position: relative; */
     display: inline;
+}
+
+#form-list {
+    display: flex;
+    
+    
 }

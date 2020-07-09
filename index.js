@@ -25,7 +25,9 @@ function toggleVisibility(event) {
     }
 }
 
-
+function parseJSON(response) {
+    return response.json()
+}
 
 function loadTemplate(event) {
     event.preventDefault();
@@ -36,7 +38,7 @@ function loadTemplate(event) {
     //loading bar (in then?)
     
     fetch('http://madlibz.herokuapp.com/api/random?minlength=1&maxlength=5')
-        .then(response => response.json())
+        .then(parseJSON)
         .then(displayTemplate)
         // .catch()
 }
@@ -46,15 +48,27 @@ function displayTemplate(template) {
     console.log(template)
 
     displayTemplateTitle(template);
+
+
     
-    template.blanks.forEach(blankWord => {
-        const li = document.createElement('li');
-        li.innerHTML = `<input name=${blankWord} placeholder=${blankWord} /> <input type='submit' />`
-        li.addEventListener('submit', optimisticRender);
-        formList.appendChild(li);
-    })
+    template.blanks.forEach(createForm)
+
     console.log(formList)
 }
+
+function createForm(blankWord) {
+
+    //may have to break input and submit into different elements
+
+    const li = document.createElement('li');
+    li.innerHTML = `<form>
+                        <input name=${blankWord} placeholder=${blankWord} />
+                        <input type='submit' />
+                    </form>`
+    li.addEventListener('submit', optimisticRender);
+    formList.appendChild(li);
+}
+
 
 function optimisticRender(event) {
     const inputData = new FormData(event.target);
@@ -62,7 +76,7 @@ function optimisticRender(event) {
     answerList.appendChild(answer);
 
     //should empty form after render
-    
+
     //if logged in, fetch performed here
     
     event.target.reset();
