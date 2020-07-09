@@ -1,0 +1,10 @@
+#answer-list {
+    list-style-type: none;
+    float: right;
+    margin: 10rem;    
+}
+
+.lists {
+    /* position: relative; */
+    display: inline;
+}
