@@ -8,10 +8,12 @@
 <body>
     <header><h1>Madlibz Generator</h1></header>
     <main>
-        <h2 id='template-title'></h2>
+        <h2>Madlibz Generator</h2>
+        <button id='template-load'>Click to play!</button>
+        <h3 id='template-title'></h3>
         <div class='lists'>
+            <ul id='form-list'></ul>
             <div id='answer-list'></div>
-            <div id='form-list'></div>
         </div>
         <!-- <form id='prompt-list'> -->
             <!-- <div><ul id='prompt-list'></ul></div> -->
@@ -19,6 +21,9 @@
         <!-- </form> -->
         <!-- <div><ul id='prompt-list'></ul></div> -->
     </main>
+    <footer>
+        <button id='reset-button'>New Template</button>
+    </footer>
     <script src='index.js'></script>
     <link rel='stylesheet' href='app.css' />
 </body>
