@@ -6,7 +6,7 @@
 .lists {
     display: inline-block;
     position: relative;
-    left: 6rem;
+    left: 35%;
 }
 
 body {
@@ -14,16 +14,25 @@ body {
 }
 
 h1 {
-    color: hsl(9, 100%, 75%);
+    color: hsl(3, 100%, 66%);
     text-decoration: underline;
-    text-shadow: 2px 2px white;
+    text-shadow: 2px 2px black;
+}
+
+form {
+    border-style: inset;
 }
 
 
 #story {
     text-align: center;
     position: relative;
-    top: 4rem;
+    top: 1rem;
+}
+
+#story > p {
+    color: hsl(424, 100%, 66%);
+    text-shadow: 2px 2px black;
 }
 
 #form-list {
@@ -34,26 +43,69 @@ h1 {
     display: none;
     position: fixed;
     bottom: 12%;
-    left: 9%;
+    left: 2%;
+    height: 6rem;
+    width: 6rem;
 }
 
 
 #template-load {
-    margin: 5rem;
+    margin: 8rem;
     position: relative;
     background-color: hsl(9, 77%, 50%);
+    border-radius: 20px;
 }
 
 
 .template-button {
-    width: 8rem;
-    height: 3rem;
+    width: 11rem;
+    height: 5rem;
 }
 
+button {
+    background-color: hsl(9, 77%, 50%);
+    border-radius: 20px;
+    height: 4rem;
+}
+
+h4 > p {
+    color: hsl(424, 100%, 66%);
+}
+
+#template-title {
+    color: hsl(-62, 99%, 61%);
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+p {
+    color: hsl(3, 100%, 66%);
+    text-decoration: underline;
+    text-shadow: 2px 2px black;
+    font-size: x-large;
+    line-height: 2.5rem;
+}
 
 h2 {
     margin: 4rem;
-    background-color: hsla(56, 56%, 56%, 64%);
+    border-style: dashed;
+    border-color: hsl(424, 100%, 66%);
+    font-style: oblique;
+    font-weight:bold;
+    color: hsl(0, 100%, 63%);
+}
+
+.title {
+    color: hsl(3, 100%, 66%);
+    text-decoration: underline;
+    /* text-shadow: 2px 2px black; */
+}
+
+ol {
+    color: hsl(424, 100%, 66%);
+    text-shadow: 2px 2px black;
+    font-size: large;
+    padding: 3rem;
 }
 
 
@@ -63,8 +115,9 @@ h2 {
 
 form {
     width: 11rem;
+
 }
 
-li {
-
+#answer-list > li {
+ padding: 0.78rem;
 }

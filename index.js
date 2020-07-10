@@ -58,7 +58,7 @@ function loadTemplate(event) {
     
     //loading bar (in then?)
     
-    fetch('http://madlibz.herokuapp.com/api/random?minlength=1&maxlength=5')
+    fetch('http://madlibz.herokuapp.com/api/random?minlength=1&maxlength=20')
         .then(parseJSON)
         .then(displayTemplate)
         // .catch()
@@ -104,10 +104,14 @@ function createStory() {
     let valueList = JSON.parse(localStorage.getItem('values'));
     let story = '';
     for (let i = 0; i < (valueList.length-1); i++) {
-        collectAnswers().forEach(answer => {
-            story = story.concat(valueList[i] + ' ' + answer)
-        });
+        story = story + valueList[i] + ' ' + collectAnswers()[i]
     };
+
+    //     collectAnswers().forEach(answer => {
+    //         story = story + valueList[i] + ' ' + answer + ','
+    //         // story = story + story.concat(valueList[i] + ' ' + answer)
+    //     });
+    // };
     reset(instructions);
     resetMain();
     appendStory(story);
