@@ -28,8 +28,8 @@ function parseJSON(response) {
 
 function loadTemplate(event) {
     event.preventDefault();
-    
     toggleVisibility();
+    formList.innerHTML = '';
     
     //loading bar (in then?)
     

@@ -19,18 +19,23 @@
     left: 4rem;
 }
 
+
 #template-load {
+    margin: 5rem;
     position: relative;
-    left: 10rem;
-    top: 9rem;
-    text-align: center;
+    background-color: hsl(9, 77%, 50%);
 }
+
 
 .template-button {
     width: 8rem;
     height: 3rem;
 }
 
+
+h2 {
+    margin: 4rem;
+}
 
 
 .title {
