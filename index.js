@@ -5,7 +5,9 @@ const formList = document.querySelector('#form-list');
 const answerList = document.querySelector('#answer-list');
 const loadButton = document.querySelector('#template-load');
 const resetButton = document.querySelector('#reset-button');
-const titlePage = document.querySelector('#title-page')
+const titlePage = document.querySelector('#title-page');
+const lists = document.querySelector('.lists');
+const storyButton = document.querySelector('#story-button');
 
 // [resetButton, loadButton].forEach(addEventListener('click', loadTemplate));
 
@@ -29,7 +31,7 @@ function parseJSON(response) {
 function loadTemplate(event) {
     event.preventDefault();
     toggleVisibility();
-    formList.innerHTML = '';
+    
     
     //loading bar (in then?)
     
@@ -37,13 +39,6 @@ function loadTemplate(event) {
         .then(parseJSON)
         .then(displayTemplate)
         // .catch()
-}
-
-function displayTemplate(template) {
-
-    displayTemplateTitle(template);
-
-    template.blanks.forEach(createForm);
 }
 
 function createForm(blankWord) {
@@ -54,6 +49,69 @@ function createForm(blankWord) {
                     `</form>`;
     li.addEventListener('submit', optimisticRender);
     formList.appendChild(li);
+}
+
+
+function displayTemplate(template) {
+
+    displayTemplateTitle(template);
+
+    localStorage.setItem('values', JSON.stringify(template.value))
+
+
+    template.blanks.forEach(createForm);
+    storyButton.appendChild(createStoryButton());
+}
+
+function createStoryButton() {
+    let button = document.createElement('button');
+    button.textContent = "Let's see your masterpiece!";
+    button.addEventListener('click', renderStory);
+    return button
+}
+
+
+function renderStory(event) {
+    event.preventDefault();
+    createStory();
+}
+
+function createStory() {
+    let valueList = JSON.parse(localStorage.getItem('values'));
+    let story = '';
+    for (let i = 0; i < (valueList.length-1); i++) {
+        collectAnswers().forEach(answer => {
+            story = story.concat(valueList[i] + ' ' + answer)
+        });
+    };
+    clearScreen();
+    appendStory(story);
+}
+
+function appendStory(story) {
+    const p = document.createElement('p');
+    p.textContent = story;
+    lists.appendChild(p);
+}
+
+function collectAnswers() {
+    let inputStorage = [];
+
+    const inputList = answerList.getElementsByTagName('li');
+    console.log(Array.from(inputList))
+    Array.from(inputList).forEach(element => {
+        console.log(typeof element.textContent)
+        inputStorage.push(element.textContent);
+    });
+    // answerList.getElementsByTagName('li').forEach(input => {
+    //     inputStorage.push(input);
+    // })
+    console.log(inputStorage)
+    return inputStorage;
+}
+
+function clearScreen() {
+    lists.innerHTML = '';
 }
 
 
