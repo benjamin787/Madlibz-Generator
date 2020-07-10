@@ -1,11 +1,29 @@
 #answer-list {
-    list-style-type: none;
     float: right;
     margin: 1rem;  
 }
 
 .lists {
     display: inline-block;
+    position: relative;
+    left: 6rem;
+}
+
+body {
+    background-image: url('https://icebreakerideas.com/wp-content/uploads/2017/01/Mad-Libs-Game-Word-Lists-for-Mad-Libs-e1485225503945.jpg');
+}
+
+h1 {
+    color: hsl(9, 100%, 75%);
+    text-decoration: underline;
+    text-shadow: 2px 2px white;
+}
+
+
+#story {
+    text-align: center;
+    position: relative;
+    top: 4rem;
 }
 
 #form-list {
@@ -16,7 +34,7 @@
     display: none;
     position: fixed;
     bottom: 12%;
-    left: 16%;
+    left: 9%;
 }
 
 
@@ -35,6 +53,7 @@
 
 h2 {
     margin: 4rem;
+    background-color: hsla(56, 56%, 56%, 64%);
 }
 
 
@@ -42,3 +61,10 @@ h2 {
     text-align: center;
 }
 
+form {
+    width: 11rem;
+}
+
+li {
+
+}

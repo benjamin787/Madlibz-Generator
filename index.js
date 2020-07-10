@@ -8,6 +8,9 @@ const resetButton = document.querySelector('#reset-button');
 const titlePage = document.querySelector('#title-page');
 const lists = document.querySelector('.lists');
 const storyButton = document.querySelector('#story-button');
+const instructions = document.querySelector('h4');
+const mainPage = document.querySelector('.main-page');
+const storyPlace = document.querySelector('#story');
 
 // [resetButton, loadButton].forEach(addEventListener('click', loadTemplate));
 
@@ -25,12 +28,32 @@ function toggleVisibility() {
 }
 
 function parseJSON(response) {
-    return response.json()
+    return response.json();
+}
+
+function reset(element) {
+    element.textContent = '';
+}
+
+function loadInstructions() {
+    reset(instructions);
+    const p = document.createElement('p');
+    p.textContent = 'Fill in the boxes with the type of word mentioned.';
+    instructions.appendChild(p);
+}
+
+function resetMain() {
+    reset(formList);
+    reset(answerList);
+    reset(storyButton);
+    reset(storyPlace);
 }
 
 function loadTemplate(event) {
     event.preventDefault();
     toggleVisibility();
+    resetMain();
+    loadInstructions();
     
     
     //loading bar (in then?)
@@ -51,19 +74,20 @@ function createForm(blankWord) {
     formList.appendChild(li);
 }
 
+function saveStoryTemplate(template) {
+    localStorage.clear();
+    localStorage.setItem('values', JSON.stringify(template.value));
+}
 
 function displayTemplate(template) {
-
     displayTemplateTitle(template);
-
-    localStorage.setItem('values', JSON.stringify(template.value))
-
-
+    saveStoryTemplate(template);
     template.blanks.forEach(createForm);
     storyButton.appendChild(createStoryButton());
 }
 
 function createStoryButton() {
+    reset(storyButton);
     let button = document.createElement('button');
     button.textContent = "Let's see your masterpiece!";
     button.addEventListener('click', renderStory);
@@ -84,36 +108,25 @@ function createStory() {
             story = story.concat(valueList[i] + ' ' + answer)
         });
     };
-    clearScreen();
+    reset(instructions);
+    resetMain();
     appendStory(story);
 }
 
 function appendStory(story) {
     const p = document.createElement('p');
     p.textContent = story;
-    lists.appendChild(p);
+    storyPlace.appendChild(p);
 }
 
 function collectAnswers() {
     let inputStorage = [];
-
     const inputList = answerList.getElementsByTagName('li');
-    console.log(Array.from(inputList))
     Array.from(inputList).forEach(element => {
-        console.log(typeof element.textContent)
         inputStorage.push(element.textContent);
     });
-    // answerList.getElementsByTagName('li').forEach(input => {
-    //     inputStorage.push(input);
-    // })
-    console.log(inputStorage)
     return inputStorage;
 }
-
-function clearScreen() {
-    lists.innerHTML = '';
-}
-
 
 function optimisticRender(event) {
     event.preventDefault();
