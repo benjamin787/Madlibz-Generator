@@ -1,18 +1,39 @@
 #answer-list {
-    display: flex;
     list-style-type: none;
     float: right;
-    margin: 10rem;  
-    /* make appear next to form   */
+    margin: 1rem;  
 }
 
 .lists {
-    /* position: relative; */
-    display: inline;
+    display: inline-block;
 }
 
 #form-list {
-    display: flex;
-    
-    
+    float: left;
 }
+
+#reset-button {
+    display: none;
+    position: fixed;
+    bottom: 3rem;
+    left: 4rem;
+}
+
+#template-load {
+    position: relative;
+    left: 10rem;
+    top: 9rem;
+    text-align: center;
+}
+
+.template-button {
+    width: 8rem;
+    height: 3rem;
+}
+
+
+
+.title {
+    text-align: center;
+}
+

@@ -5,24 +5,21 @@ const formList = document.querySelector('#form-list');
 const answerList = document.querySelector('#answer-list');
 const loadButton = document.querySelector('#template-load');
 const resetButton = document.querySelector('#reset-button');
+const titlePage = document.querySelector('#title-page')
 
-[resetButton, loadButton].forEach(addEventListener('click', loadTemplate));
+// [resetButton, loadButton].forEach(addEventListener('click', loadTemplate));
 
-// resetButton.addEventListener('click', loadTemplate)
+resetButton.addEventListener('click', loadTemplate)
 
-// loadButton.addEventListener('click', loadTemplate)
+loadButton.addEventListener('click', loadTemplate)
 
 function displayTemplateTitle(template) {
     templateTitle.textContent = template.title;
 }
 
-function toggleVisibility(event) {
-    let node = event.target;
-    if (node.style.display === 'none') {
-        node.style.display = 'block';
-    } else {
-        node.style.display = 'none';
-    }
+function toggleVisibility() {
+    resetButton.style.display = 'block';
+    titlePage.style.display = 'none';
 }
 
 function parseJSON(response) {
@@ -32,8 +29,7 @@ function parseJSON(response) {
 function loadTemplate(event) {
     event.preventDefault();
     
-    toggleVisibility(event);
-    // event.target.remove();
+    toggleVisibility();
     
     //loading bar (in then?)
     
@@ -45,44 +41,36 @@ function loadTemplate(event) {
 
 function displayTemplate(template) {
 
-    console.log(template)
-
     displayTemplateTitle(template);
 
-
-    
-    template.blanks.forEach(createForm)
-
-    console.log(formList)
+    template.blanks.forEach(createForm);
 }
 
 function createForm(blankWord) {
-
-    //may have to break input and submit into different elements
-
-    const li = document.createElement('li');
-    li.innerHTML = `<form>
-                        <input name=${blankWord} placeholder=${blankWord} />
-                        <input type='submit' />
-                    </form>`
+    let li = document.createElement('li')
+    li.innerHTML = `<form>` +
+                        `<input name='name' placeholder='${blankWord}' />` +
+                        `<input type="submit" />` +
+                    `</form>`;
     li.addEventListener('submit', optimisticRender);
     formList.appendChild(li);
 }
 
 
 function optimisticRender(event) {
+    event.preventDefault();
+    
     const inputData = new FormData(event.target);
     const answer = inputData.get('name');
-    answerList.appendChild(answer);
-
-    //should empty form after render
-
+    
+    let li = document.createElement('li');
+    li.textContent = answer;
+    
+    answerList.appendChild(li);
+    
     //if logged in, fetch performed here
     
     event.target.reset();
-
-    console.log(answer)
-    console.log(answerList)
 }
 
 
