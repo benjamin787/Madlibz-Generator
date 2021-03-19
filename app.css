@@ -98,7 +98,6 @@ h2 {
 .title {
     color: hsl(3, 100%, 66%);
     text-decoration: underline;
-    /* text-shadow: 2px 2px black; */
 }
 
 ol {
